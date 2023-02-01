@@ -1,0 +1,681 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>                                   gUSD Litepaper</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="fbdda3ec-043e-4c4e-bb0c-17fc26878ef9" class="page sans"><header><h1 class="page-title">                                   gUSD Litepaper</h1></header><div class="page-body"><p id="cc9c5165-48c5-4a56-bc05-5ed2fca832c6" class="">                                                                   <strong>Stablecoin backed by synthetic gold - </strong><em><strong>gUSD</strong></em></p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="c4556d57-68ac-4ef2-9e97-f90e4dddb14b"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>creating a trustless and truly decentralised gold-backed stablecoin (gUSD).</strong></div></figure><div id="1c0e45d7-f4b2-47cf-9085-4dd669c0e151" class="column-list"><div id="ef73ba39-61d9-49c2-9ca2-bcca83928fd7" style="width:4.166666666666666%" class="column"><p id="8b1b84fc-925b-46f8-a1be-17a68de71434" class="">
+</p></div><div id="2202414a-99f9-44a7-940a-137ba294514d" style="width:33.33333333333333%" class="column"><p id="d27e608a-5cdd-48ec-8f66-69a5eeb1fed8" class=""><strong>Table of contents</strong><div class="indented"><nav id="ad9c95b1-3f2e-4e77-8383-60f161d81345" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#49f0099e-bbbf-44e2-a4f2-475ec9c3abf2">Problem :</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c8c93365-1f41-4dfc-9efc-38074505e04d">Solution :</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#7380d3e8-ac41-48b9-bdb5-c16c7eeea783">Roadmap :</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#f77806e3-e098-48c3-be68-e66cd0b96360"><strong>Competitors:</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#9fa2da20-5fed-4170-96a7-fc7518462a33">Distribution Strategy - GTM :</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#614db511-9969-4255-b641-613a18b3ccc1">Market Size :</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#f92c47c9-63bd-41d0-a087-fa8af0149336">Team XaU Labs:</a></div></nav><p id="45009dbb-8093-4b7b-b9ca-fe031a5bd45d" class="">
+</p></div></p></div><div id="4bf39338-8265-4191-aae2-a75e3518b500" style="width:62.500000000000014%" class="column"><blockquote id="d047b3a1-037b-407b-9f2a-d7e5972d4d2a" class="">Mint <strong>gUSD,</strong>
+ a USD-pegged stablecoin backed by synthetic gold. Users can use any token as collateral that is backed by gold. By locking other USD-pegged stablecoins, we can benefit from better risk management and hedge against inflation.</blockquote><blockquote id="7607b82a-8098-43f9-b952-361ee4635d74" class=""><strong>Vs. Competitors: </strong>
+gUSD can be minted at a 102% collateral-to-loan ratio, where it is 110% in LUSD (liquidity) and 135% in DAI (maker tier B), and these issuers back the collateral with ETH pricing, risking volatility and bad debt risks.</blockquote></div></div><hr id="82ec33fb-4843-4a05-8213-093d4e9eea2c"/><h1 id="49f0099e-bbbf-44e2-a4f2-475ec9c3abf2" class=""><details open=""><summary>Problem :</summary></details></h1><div class="indented"><ul id="741e64f2-6302-4eff-84f7-e3bf4553037d" class="bulleted-list"><li style="list-style-type:disc">DAI and LUSD are minted by locking up ETH at the current USD value up to 110% of the collateral to loan ratio. The debt is liquidated as the ETH becomes bearish and volatile. And defi users who want to hedge the inflation and volatility have no option but to move towards <strong>PAXG, PMGT, and GLC </strong>tokens, which are backed by physical gold reserves that are centralized, not trustless, and pose the threat of physical damage to uninsured issuers, or the issuers can double spend the reserved gold.</li></ul></div><h1 id="c8c93365-1f41-4dfc-9efc-38074505e04d" class=""><details open=""><summary>Solution :</summary></details></h1><div class="indented"><ul id="fcbf7ae7-ce8d-416c-98ba-dd33a0cafa2d" class="bulleted-list"><li style="list-style-type:disc">Mint <strong>gUSD</strong>, a stablecoin backed by synthetic gold. Users can use any token as collateral, and the value is converted into gold pricing.So technically, the collateral is now gold, where the maximum fluctuation per day is less than 0.5%. So users can take safe leverage up to 50x on gold at a 102% collateral-to-loan ratio, which means that for every dollar locked, we can mint 0.9803 dollars, netting 50x leverage after looping the same process.</li></ul><p id="9d3e37b0-0164-438f-9745-c13f34a8e55f" class="">
+</p><p id="d1f9efa1-5c1f-494a-9d31-0dda07cc9b41" class="">So thereby, the following <em>actions :</em><div class="indented"><ol type="1" id="4ced7081-8198-4607-9493-31110b393a6d" class="numbered-list" start="1"><li>Users can lock their ETH/ BTC/  or any token at the value of gold to not lose value or hedge against the dollar by locking any other USD-pegged stablecoin.</li></ol><ol type="1" id="f8f45321-afa3-41d4-9f19-bb82ae3638ab" class="numbered-list" start="2"><li>Users can take a maximum loan of 0.9803$ for 1$ locked, which nets 50x maximum leverage (after loops) at 102% collateral to loan value.</li></ol><ol type="1" id="48a4830d-232a-4d16-a452-1d07401af6ab" class="numbered-list" start="3"><li>Users can take advantage of managing the risk of their troves, as gold is a low-volatile commodity.</li></ol><p id="d0c7b173-170b-4d3c-9adc-cd71105ecc54" class="">
+</p><p id="6e8372a9-17c3-47aa-b2c0-6ff686d2da84" class="">
+</p><p id="3d562c33-1c68-4488-b5fc-e794f1e4c737" class="">The gUSD minted in the above user actions are minted or burned according to the action, making the gUSD trustless and truly decentralized.</p><p id="e0770ed9-876e-4313-97d1-5b7594d892aa" class="">
+</p></div></p><p id="ef598a08-22ee-4477-bd2b-ff318875b32e" class="">
+</p><h2 id="62d016f1-23bb-498b-aaf0-08653ffff4de" class=""><details open=""><summary>Action :</summary></details></h2><div class="indented"><ol type="1" id="22fecbcf-984c-429d-a2ae-437dfce7d77e" class="numbered-list" start="1"><li>ACTION 1 : useful for institutions and whales to lock the volatile ERC20 tokens at gold pricing to mitigate volatility risk, and some whales can lock the collateral of USD/EURO pegged stables to hedge inflation as their collateral is technically backed by gold.</li></ol><ol type="1" id="e760b5ee-990e-4ca5-852a-99802864523e" class="numbered-list" start="2"><li>ACTION 2 : Traders and institutions can trade the XAU/USD pair as perpetuals with max leveraging at 50x (we, as a Dapp, will provide this feature, or any other frontends can make use of our smart contracts).</li></ol><ol type="1" id="d72b1841-5bab-40b9-97ad-1cfd4bcf3927" class="numbered-list" start="3"><li>ACTION 3 : Users who do not trust the USDT, USDC, or BUSD because they can be frozen by issuers, or who do not trust the DAI or LUSD due to ETH volatility and unliquidated bad debts, may see their currency depegged from the US dollar (a very small possibility due to well-tested protocols).These users can hold gUSD, which is a trustless, decentralized, and gold-backed stablecoin.</li></ol></div></div><h1 id="7380d3e8-ac41-48b9-bdb5-c16c7eeea783" class=""><details open=""><summary>Roadmap :</summary></details></h1><div class="indented"><ol type="1" id="41e89bea-f43b-4299-a48a-811527fbd568" class="numbered-list" start="1"><li>Creating an LP pool of baskets containing ETH, WBTC, XAU*, and gUSD, similar to a GLP pool (GMX protocol), and earning a 0.3% fee from LP providers.</li></ol><ol type="1" id="3fc14f80-476c-481d-aab1-584c7f86922f" class="numbered-list" start="2"><li>single or multiple stores of values like WBTC, ETH, and silver in addition to the current gold option.</li></ol><h2 id="de57eb94-5e2e-42bb-9bf1-c148be752717" class=""><details open=""><summary>Q1 :</summary></details></h2><div class="indented"><ol type="1" id="7e2c17b2-253b-4cfb-aff3-b8aa3feaa244" class="numbered-list" start="1"><li>MVP (Stablecoin minting, borrowing, and stability pooling) is live on the Goerli Testnet.</li></ol><ol type="1" id="5c54e7ea-3f72-4196-b9c4-f4255aaf6bae" class="numbered-list" start="2"><li>Adding more oracles, such as chainlink, tellor, UMA, band, DIA, and our own backend Oracle, will result in a more robust price feed.</li></ol><ol type="1" id="f1afed33-5d36-4803-bb28-ab4edf19d75b" class="numbered-list" start="3"><li>self-auditing contracts.</li></ol></div><h2 id="9305a1c4-7402-4624-9be8-65717a2962d7" class=""><details open=""><summary>Q2 :</summary></details></h2><div class="indented"><ol type="1" id="25218ba5-f0e3-4403-a08a-c06a77a78064" class="numbered-list" start="1"><li> MVP live on mainnet.</li></ol><ol type="1" id="33b7ff22-754c-4091-b2c0-138f57f2b386" class="numbered-list" start="2"><li>create bonding mechanisms to generate yields.</li></ol><ol type="1" id="125a9250-2273-4381-9bc2-7718333e16b8" class="numbered-list" start="3"><li>Governance Token Generation Event.</li></ol><ol type="1" id="50b8df5c-46f0-4d19-b368-883649a1c830" class="numbered-list" start="4"><li>Host public smart contract auditing contests.</li></ol><ol type="1" id="497424b6-18d2-4e9c-a79c-9ebc8b8d794f" class="numbered-list" start="5"><li>Release SDK to opensource the UI building.</li></ol></div><h2 id="16442adb-252e-46f3-9603-c26101949b5a" class=""><details open=""><summary>Q3 :</summary></details></h2><div class="indented"><ol type="1" id="bdf04a80-c625-40bb-8b24-9617d3665ebc" class="numbered-list" start="1"><li>Deploying on 5+ chains with native stable-coin bridges</li></ol><ol type="1" id="ccb0773a-922d-484d-8f3e-345cb41b4a41" class="numbered-list" start="2"><li>Going on multichain with a single vault pool using Layer 0, the cosmWasm SDK </li></ol><ol type="1" id="763ce774-0018-4835-8551-30ea7913fa5a" class="numbered-list" start="3"><li>Implement new contracts to mint BTC-backed stablecoins.</li></ol><ol type="1" id="c4925189-23b8-4c90-852d-19b499bd0b62" class="numbered-list" start="4"><li>Create LP pools for Dex pairs and triPools on all chains.</li></ol></div><h2 id="e381e9c1-c436-44c9-99c2-0354acd8492f" class=""><details open=""><summary>Q4: </summary></details></h2><div class="indented"><ol type="1" id="b26a8b55-6862-4cfb-8463-587b01322b7e" class="numbered-list" start="1"><li>going live on other fiats like the gEUR, gGBP, and gCNY stables.</li></ol><ol type="1" id="d53d4e4e-5d28-473c-b450-bbe7d53d9c02" class="numbered-list" start="2"><li>Build a PERP/options dex with our stablecoins as collateral tokens.</li></ol><ol type="1" id="9e564d54-dbc1-4700-866b-ae24b1a4a3a9" class="numbered-list" start="3"><li>Implement OTC/centralized services for institutions</li></ol></div><p id="9a6ed1d0-b7d7-4357-95c7-ed9805cc7d87" class="">
+</p><h2 id="64e27fbe-a154-4496-aa2e-3bbcde3e7759" class="">Long-Term goal:</h2><ol type="1" id="31aef726-d4ee-4244-a8cb-8f8a90f77421" class="numbered-list" start="1"><li>gUSD into multi-chain interoperability</li></ol><ol type="1" id="507ba727-515f-4b09-bac2-eae62fd922a3" class="numbered-list" start="2"><li>Creating gold bonds for yield</li></ol><ol type="1" id="47f72b67-dba2-4d37-acfc-51ee6936b9da" class="numbered-list" start="3"><li>Developing gEUR, gCNY, gGBP, and other multi-fiat gold-backed coins</li></ol><ol type="1" id="14d2e4c8-73de-4b7d-8802-52e9dcca6eac" class="numbered-list" start="4"><li>Creating a DeX on these products</li></ol><ol type="1" id="03b124b9-f487-4ec9-9fb3-6c29778d1ff3" class="numbered-list" start="5"><li>WBTC-backed stablecoin -- bitcoin standard</li></ol></div><h1 id="f77806e3-e098-48c3-be68-e66cd0b96360" class=""><details open=""><summary><strong>Competitors:</strong></summary></details></h1><div class="indented"><ol type="1" id="2be0f3a8-c97d-4604-9cfe-08376dbffaac" class="numbered-list" start="1"><li>Direct Competitors:<ol type="a" id="43f3436a-6115-4551-a7ae-dc068780656e" class="numbered-list" start="1"><li>Maker DAO - DAI</li></ol><ol type="a" id="b850b81f-f2b7-4664-83f8-f424089ae37b" class="numbered-list" start="2"><li>Liquity- LUSD</li></ol><ol type="a" id="063d3b27-9af1-469b-b2dc-a8bbc6f775cc" class="numbered-list" start="3"><li>Reflexer- RAI</li></ol></li></ol><ol type="1" id="7631f14d-3c42-42cc-bf40-a8d72f9043ce" class="numbered-list" start="2"><li>Indirect Competitors:<ol type="a" id="3502074c-9e60-4146-9f31-8c206ee265b0" class="numbered-list" start="1"><li>Tether- USDT</li></ol><ol type="a" id="64e93c92-a019-47fd-879f-101d73746f20" class="numbered-list" start="2"><li>Circle- USDC</li></ol></li></ol><h3 id="c7e95122-4c03-433a-aa45-de558fe7f7fa" class="">Competitive Advantage:</h3><ul id="c82b3e2d-18b2-4426-bd47-ad74162d9882" class="bulleted-list"><li style="list-style-type:disc">Less volatile as a result of gold backing</li></ul><ul id="d37c8785-6565-4ff2-919b-bd333130ac79" class="bulleted-list"><li style="list-style-type:disc">Our collateral-to-loan ratio is 102% with a maximum leverage of 50x v/s LUSD, (LUSD) collateral-to-loan ratio is 110% with a maximum leverage of 11x.</li></ul><ul id="4f824978-ab11-4e81-92c1-d93f4aaa29fb" class="bulleted-list"><li style="list-style-type:disc">The novelty of the gold standard</li></ul></div><h1 id="9fa2da20-5fed-4170-96a7-fc7518462a33" class=""><details open=""><summary>Distribution Strategy - GTM :</summary></details></h1><div class="indented"><ol type="1" id="75c030a3-16ec-4081-bee2-9a5721e2b08a" class="numbered-list" start="1"><li>Vesting the governance token for an initial $1 billion trading volume.</li></ol><ol type="1" id="50ba3db3-0dde-4923-945f-f24fa1d7ad65" class="numbered-list" start="2"><li>Early LP providers earn high APRs as they hold more weight in the pool for the same amount of fees generated.</li></ol><ol type="1" id="6155c431-c7a0-4674-8576-57d01fa228cc" class="numbered-list" start="3"><li>On top of our own governance token, we prioritise Maker MKR and LQTY token holders to receive increased rewards and votes in governance.</li></ol><ol type="1" id="bcd45227-f615-40b9-a500-893965621a03" class="numbered-list" start="4"><li>It is marketed as a gold-backed stablecoin that can be borrowed at 102% interest-free.</li></ol><p id="a3bb3a86-872e-4d4c-99b7-52030d25dcad" class="">
+</p><h3 id="d7c883c9-0fe3-4fc2-8746-9d9bee427d95" class="">Target Audience:</h3><blockquote id="21088405-2825-491e-944c-7fb4b9dba6b9" class="">Institutions &amp; Investment DAOs</blockquote><blockquote id="22152d9a-0f17-4095-8095-927deaa42ec7" class="">Investors seeking Arbitrage</blockquote><blockquote id="bbd3a87e-0a44-419c-b422-0faf6be453c1" class="">LP providers</blockquote><blockquote id="3c1b0dc3-1def-4853-b545-1bad7205246c" class="">Individual Crypto Investors</blockquote></div><h1 id="614db511-9969-4255-b641-613a18b3ccc1" class=""><details open=""><summary>Market Size :</summary></details></h1><div class="indented"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="e53ff36e-d29b-433f-a90a-66e4df622c84"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Total Available Market: 137 Billion USD</div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="655fbec2-ab86-4e18-ad57-7c7f647c7678"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Serviceable Available Market: 20 Billion USD</div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="c8c6b613-8771-4d24-9bec-a9401076215a"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Serviceable Obtainable Market: 5 Billion USD</div></figure><p id="deaf9f28-1d76-4c70-8992-6926afe67b02" class="">
+</p></div><h1 id="f92c47c9-63bd-41d0-a087-fa8af0149336" class=""><details open=""><summary>Team XaU Labs:</summary></details></h1><div class="indented"><ol type="1" id="06b81102-384b-4ddd-aec0-103f3f7a3064" class="numbered-list" start="1"><li>Nuthan Prasad - Smart contract Developer.</li></ol><ol type="1" id="7bcf959f-bddf-4b80-aa28-84b2b64719c5" class="numbered-list" start="2"><li>Lokesh P Velayudham - Full stack developer &amp; Business.</li></ol><ol type="1" id="46d3b0b9-f55d-43aa-9321-9bbe9cb6f0e4" class="numbered-list" start="3"><li>Gathin - Full-stack Blockchain Developer</li></ol></div></div></article></body></html>
